@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VirtualSec Lab, a virtual lab for cybersecurity training">
+    <title>Network Forensics | DFLab</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/overlay.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+
+    <!-- TailwindCSS & daisyUi -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <div class="intro-container min-h-screen">
+        <div class="hero-content w-1/3 mx-auto font-['Inter']">
+            <div class="flex flex-col gap-16 pt-12">
+                <div class="flex flex-row gap-8">
+                    <figure>
+                        <img
+                            class="size-24"
+                            src="{{ url_for('static', filename='img/learn.png') }}"
+                            alt="Intro image" />
+                    </figure>
+                    <h1 class="font-['Archivo'] intro-ttl content-center">Network Forensics
+                        <p>Apa itu Network Forensics?</p>
+                    </h1>
+                </div>
+
+                <div class="intro-content">
+                    <h2>Introduction</h2>
+                    <p class="pb-3">
+                        Network forensic adalah suatu cabang dari digital forensik yang memfokuskan diri pada analisis jaringan
+                        digital, termasuk struktur jaringan, protokol, dan metode identifikasi dan ekstraksi informasi dari
+                        jaringan digital. Network forensic digunakan untuk merekonstruksi aktivitas pengguna, mengidentifikasi
+                        pola perilaku, serta menghubungkan berbagai artefak digital dalam suatu skenario investigasi.
+                    </p>
+
+                    <!-- TODO: Add more content here -->
+
+                    <h2>Lesson Overview</h2>
+                    <ul class="list-disc list-inside pl-2 pb-5">
+                        <li>File memiliki struktur internal (header, body, footer)</li>
+                        <li>Ekstensi file tidak selalu mencerminkan format sebenarnya</li>
+                        <li>File dapat dimodifikasi atau dimanipulasi</li>
+                        <li>File analysis menjadi dasar analisis forensik lanjutan</li>
+                    </ul>
+
+                    <h2>Learning Outcomes</h2>
+                    <ul class="list-disc list-inside pl-2 pb-5">
+                        <li>Memahami konsep dasar analisis file digital</li>
+                        <li>Mengidentifikasi struktur dan karakteristik file</li>
+                        <li>Menentukan peran file sebagai artefak forensik</li>
+                    </ul>
+
+                    <h2>Practice Scenario</h2>
+
+                    <details class="my-4" open>
+                        <summary>Langkah 1 - Traffic Overview</summary>
+                        <p class="px-4 pt-2">
+                            Memahami struktur umum dari lalu lintas jaringan.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">cd</span> evidence/network_forensic</code><br>
+                            <code><span id="cmmd">tsark</span> -r {nama_file}.pcap</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>tshark -r {nama_file}.pcap</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Membaca file PCAP melalui CLI</li>
+                                <li><code>-r</code>, membaca file pcap</li>
+                                <li>Menampilkan paket satu per satu</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 2 - Identifikasi Protokol Jaringan</summary>
+                        <p class="px-4 pt-2">
+                            Periksa lalu lintas jaringan untuk mengidentifikasi protokol jaringan apa yang paling
+                            dominan.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">tshark</span> -r {nama_file}.pcap -q -z io,phs</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>tshark -r {nama_file}.pcap -q -z io,phs</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Menampilkan statistik distribusi protokol</li>
+                                <li><code>-q</code>, quiet mode</li>
+                                <li><code>-z io,phs</code>, protocol hierarchy statistics</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 3 - Investigasi DNS</summary>
+                        <p class="px-4 pt-2">
+                            Melakukan investigasi terhadap DNS dan mengidentifikasi domain queries yang mencurigakan.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">tshark</span> -r {nama_file}.pcap -Y dns -T fields -e dns.qry.name</code><br>
+                            <p>(Opsional: Menghitung frequensi)</p>
+                            <code><span id="cmmd">exiftool</span> -r {nama_file}.pcap -Y dns -T fields -e dns.qry.name | 
+                                <span id="cmmd">sort</span> | <span id="cmmd">uniq</span> -c | <span id="cmmd">sort</span> -nr</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>tshark -r {nama_file}.pcap -Y dns -T fields -e dns.qry.name</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Mengesktrak nama domain dari lalu lintas DNS</li>
+                                <li><code>-Y dns</code>, filter lalu lintas DNS</li>
+                                <li><code>-T fields</code>, menampilkan output spesifik</li>
+                                <li><code>-e dns.qry.name</code>, menampilkan field domain</li>
+                                <li><code>sort</code>, mengurutkan frekuensi kemunculan domain</li>
+                                <li><code>uniq -c</code>, menghitung frekuensi kemunculan domain</li>
+                                <li><code>sort -nr</code>, mengurutkan kemunculan dari yang terbanyak</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 4 - Analisis Traffic HTTP</summary>
+                        <p class="px-4 pt-2">
+                            Melakukan inspeksi terhadap lalu lintas permintaan protokol HTTP untuk mengidentifikasi aktivitas
+                            mencurigakan.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">tshark</span> -r {nama_file}.pcap -Y http.request</code>
+                            <p>(Opsional: show request details)</p>
+                            <code><span id="cmmd">tshark</span> -r {nama_file}.pcap -Y http -V</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>tshark -r {nama_file}.pcap -Y http.request</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Menampilkan http request</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 5 - Analisis IP Address</summary>
+                        <p class="px-4 pt-2">
+                            Melakukan identifikasi hubungan IP yang mencurigakan.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">tshark</span> -r {nama_file}.pcap -T fields -e ip.src -e ip.dst</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>tshark -r {nama_file}.pcap -T fields -e ip.src -e ip.dst</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Menampilkan pasangan IP dari sumber dan tujuan</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                </div>
+
+                <div class="grid grid-cols-3 gap-x-6 card-btn place-items-center">
+                    <a href="/module/file-analysis">
+                        <div class="card card-border card-md w-44">
+                            <div class="card-body items-center">
+                                <div class="card-title">Back</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="card card-border card-md w-44">
+                        <a href="/practice">
+                            <div class="card-body items-center">
+                                <div class="card-title">Practice</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="card card-border card-md w-44">
+                        <a href="/module/digital-footprint-investigation">
+                            <div class="card-body items-center">
+                                <div class="card-title">Continue</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+    
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+</body>
+</html>

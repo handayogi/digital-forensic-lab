@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VirtualSec Lab, a virtual lab for cybersecurity training">
+    <title>Virtual Digital Forensic Lab</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/overlay.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+
+    <!-- TailwindCSS & daisyUi -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/e08144cc9c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <!-- Hero Content -->
+    <div class="hero min-w-screen" id="homepage">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="grid grid-rows-2 max-w-screen font-['Sora'] text-center">
+                <div class="headline">
+                    <h1 class="text-shadow-lg/30">VirtuaLab</h1>
+                    <hr class="w-2/4 place-self-center">
+                    <p class="py-8 text-xl w-2/3 mx-auto">
+                        Platform praktik digital forensic dengan virtual machine 
+                        yang terintegrasi tanpa instalasi tambahan.
+                    </p>
+                    <a href="/module" class="cta-btn" data-page="module">Lihat Modul</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="hero-content min-h-screen max-w-screen about-content">
+            <div class="grid grid-cols-2 gap-x-12">
+                <div class="about-desc max-w-lg text-center">
+                    <h2 class="text-5xl font-light font-['Geom']">Tentang 
+                        <span class="text-5xl font-bold">DFLab</span>
+                    </h2>
+
+                    <p class="py-6 text-justify text-xl font-light font-['Inter']">
+                        Laboratorium Virtual Digital Forensic ini dikembangkan sebagai bagian 
+                        dari Tugas Akhir dengan tujuan menyediakan media pembelajaran berbasis 
+                        web yang interaktif dan aplikatif dalam bidang Digital Forensic. Sistem 
+                        ini menggabungkan modul pembelajaran teoritis dengan lingkungan praktik 
+                        berbasis virtual machine yang dapat diakses langsung melalui browser.
+                    </p>
+
+                    <p class="text-justify text-xl font-light font-['Inter']">
+                        Pengembangan laboratorium virtual ini dilatarbelakangi oleh keterbatasan 
+                        akses terhadap perangkat dan lingkungan praktik Digital Forensic yang kompleks. 
+                        Melalui pendekatan virtualisasi dan integrasi teknologi web, platform ini diharapkan 
+                        mampu membantu mahasiswa dan pembelajar memahami proses investigasi forensik 
+                        digital secara sistematis dan realistis.
+                    </p>
+
+                    <details class="mt-6 text-left collapse" name="goals" open>
+                        <summary class="collapse-title font-semibold font-['Geom']">Goals</summary>
+                        <ul class="collapse-content text-sm list-disc list-inside font-['Inter']">
+                            <li>Menyediakan media pembelajaran Digital Forensic yang terstruktur.</li>
+                            <li>Mengintegrasikan teori dan praktik dalam satu platform.</li>
+                            <li>Meningkatkan pemahaman konsep investigasi forensik digital.</li>
+                            <li>Mendukung pembelajaran mandiri berbasis skenario.</li>
+                        </ul>
+                    </details>
+                </div>
+
+                <div class="place-content-center features">
+                    <ul class="list rounded-box shadow-md font-['Sora']">
+                        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Feature Highlights</li>
+
+                        <li class="list-row max-w-xl">
+                            <div><i class="fa-regular fa-file"></i></div>
+                            <div>
+                                <span>File Analysis</span>
+                            </div>
+                            <p class="list-col-wrap text-xs">
+                                Pelajari teknik analisis file digital untuk mengidentifikasi struktur, 
+                                isi, dan potensi artefak forensik yang relevan dalam sebuah proses investigasi.
+                            </p>
+                        </li>
+
+                        <li class="list-row max-w-xl">
+                            <div><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <span>Metadata Investigation</span>
+                            </div>
+                            <p class="list-col-wrap text-xs">
+                                Eksplorasi metadata digital sebagai sumber informasi tersembunyi yang dapat 
+                                mengungkap waktu, lokasi, perangkat, dan aktivitas terkait suatu objek digital.
+                            </p>
+                        </li>
+
+                        <li class="list-row max-w-xl">
+                            <div><i class="fa-solid fa-hashtag"></i></div>
+                            <div>
+                                <span>Digital Footprint Investigation</span>
+                            </div>
+                            <p class="list-col-wrap text-xs">
+                                Pahami konsep jejak digital dan metode investigasi terhadap aktivitas pengguna 
+                                di dunia digital sebagai bagian dari analisis forensik modern.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+</body>
+</html>

@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Cause:wght@100..900&family=Geom:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Pacifico&family=Sora:wght@100..800&display=swap');
+@import "tailwindcss";
+
+:root {
+    /* Fonts */
+    --font-geom: 'Geom', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+    --font-sora: 'Sora', sans-serif;
+    --font-cause: 'Cause', cursive;
+    --font-pacifico: 'Pacifico', cursive;
+    --font-archivo: 'Archivo', sans-serif;
+
+    /* Brand */
+    --color-bg-primary: #000000;
+    --color-primary: #0B1F33;
+    --color-secondary: #161B22;
+    --color-background: #1E242B;
+
+    /* Accent */
+    --color-accent: #14a5b8;
+    --color-warning: #F59E0B;
+    --color-success: #22C55E;
+    --color-error: #EF4444;
+
+    /* Text */
+    --text-primary: #E6EDF3;
+    --text-secondary: #D1D9E0;
+    --text-body: #9BA5AE;
+    --text-muted: #6B7280;
+
+    /* Other */
+    --frozen: #d6fff6;
+    --golden: #ffc857;
+    --brick: #c83e4d;
+    --grape: #4e4187;
+}
+
+::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+body, html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    background-color: var(--color-bg-primary);
+}
+
+hr {
+    border: 0;
+    margin-bottom: 1.5em;
+    height: 0.1em;
+    background-color: var(--text-secondary);
+}
+
+.hero {
+    min-height: 120vh;
+    background-image: linear-gradient(to bottom,
+        rgb(5%, 5%, 5%),
+        rgb(4%,4%,19%),
+        rgb(3%,3%,33%),
+        rgb(1%,1%,46%),
+        rgb(0%,0%,60%)
+    );
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.menu-btn,
+details ul li,
+.features li,
+.intro-content p,
+.intro-content ul li {
+    color: var(--text-secondary);
+}
+
+.hero-overlay {
+    background-image: url(../img/pattern.svg);
+    background-attachment: fixed;
+    background-size: cover;
+    mix-blend-mode: color-burn;
+}
+
+.headline h1 {
+    font-family: var(--font-geom);
+    font-weight: 900;
+    font-size: 8.5em;
+}
+
+.nav-title,
+.headline h1,
+.about-desc h2,
+details summary,
+.card-title,
+.card-body h2,
+.intro-ttl {
+    color: var(--text-primary);
+}
+
+.headline p,
+.about-desc p,
+.card-body p,
+.intro-ttl p {
+    color: var(--text-body);
+}
+
+.cta-btn {
+    padding: 0.6em 2em;
+    font-weight: 300;
+    color: var(--text-secondary);
+    border-radius: 0.5em;
+    background-color: rgb(13, 29, 174);
+    transition: background-color 0.2s ease;
+}
+
+.cta-btn:hover {
+    border: 0.1em solid var(--frozen);
+    background-color: transparent;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.about-content {
+    background-color: var(--color-secondary);
+}
+
+details {
+    background-color: var(--color-background);
+}
+
+.learn-ttl {
+    color: var(--text-primary);
+    font-family: var(--font-geom);
+    font-size: 3em;
+    font-weight: 900;
+}
+
+.module {
+    background-color: #0d0d0d;
+}
+
+.card-title {
+    font-size: 1.6em;
+}
+
+.card-actions a {
+    color: var(--frozen);
+    font-weight: 500;
+    padding: 0.4em 1em;
+    border-radius: 0.4em;
+    background-color: var(--brick);
+}
+
+.divider {
+    max-width: 50%;
+    color: var(--text-secondary);
+    font-family: var(--font-archivo);
+    font-weight: 600;
+}
+
+.module-ttl {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.module-para {
+    font-size: 1em;
+}
+
+.intro-ttl {
+    font-size: 1.6em;
+    font-weight: 600;
+}
+
+.intro-ttl p {
+    font-size: 0.7em;
+    font-weight: 400;
+}
+
+.intro-content p,
+.intro-content ul li {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.intro-content h2 {
+    font-family: var(--font-sora);
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding-bottom: 0.6em;
+}
+
+/* Practice Style */
+.practice-sidebar {
+    height: 100vh;
+    max-width: 20%;
+    size-adjust: auto;
+    background-color: var(--color-secondary);
+}
+
+.practice-content h2 {
+    color: var(--text-primary);
+    font-family: var(--font-archivo);
+    font-size: 1.5em;
+    font-weight: 600;
+    padding: 0.5em 0.3em;
+}
+
+.scenario-content {
+    color: var(--text-secondary);
+}
+
+details .code {
+    background-color: var(--color-primary);
+    padding: 1em;
+    border-radius: 0.5em;
+    margin: 1em;
+}
+
+.code {
+    color: var(--frozen);
+}
+
+.code p {
+    font-size: 0.7em;
+}
+
+#cmmd {
+    color: var(--golden);
+}
+
+.card-btn {
+    margin-top: -2em;
+    margin-bottom: 2em;
+}

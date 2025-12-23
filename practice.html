@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VirtualSec Lab, a virtual lab for cybersecurity training">
+    <title>Practice | DFLab</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/overlay.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+
+    <!-- TailwindCSS & daisyUi -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/e08144cc9c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="drawer drawer-open">
+        <input type="checkbox" id="sidebar" class="drawer-toggle" />
+        <div class="drawer-content">
+            <nav class="navbar w-full">
+                <label for="sidebar" aria-label="open sidebar" class="btn btn-square btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor" class="my-1.5 inline-block size-4">
+                        <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                        <path d="M9 4v16"></path>
+                        <path d="M14 10l2 2l-2 2"></path>
+                    </svg>
+                </label>
+                <div class="px-4">DFLab Practice</div>
+            </nav>
+
+            <!-- TODO: Add content here -->
+            <div class="p-4">CONTENT</div>
+        </div>
+
+        <div class="drawer-side"></div>
+    </div>
+
+    {% include 'footer.html' %}
+    
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>

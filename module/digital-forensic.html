@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VirtualSec Lab, a virtual lab for cybersecurity training">
+    <title>Digital forensic | DFLab</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/overlay.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+
+    <!-- TailwindCSS & daisyUi -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <div class="intro-container min-h-screen">
+        <div class="hero-content w-1/3 mx-auto font-['Inter']">
+            <div class="flex flex-col gap-16 pt-12">
+                <div class="flex flex-row gap-8">
+                    <figure>
+                        <img
+                            class="size-24"
+                            src="{{ url_for('static', filename='img/learn.png') }}"
+                            alt="Intro image" />
+                    </figure>
+                    <h1 class="font-['Archivo'] intro-ttl content-center">Digital Forensic
+                        <p>Apa itu Digital Forensic?</p>
+                    </h1>
+                </div>
+
+                <div class="intro-content">
+                    <h2>Introduction</h2>
+                    <p>
+                        Digital Forensic adalah disiplin ilmu dalam keamanan siber yang berfokus pada identifikasi, pengumpulan, 
+                        analisis, dan pelaporan bukti digital secara sistematis dan dapat dipertanggungjawabkan secara hukum. Tujuan 
+                        utama digital forensic adalah merekonstruksi peristiwa yang terjadi pada sistem digital, baik untuk kebutuhan 
+                        investigasi kriminal, insiden keamanan, audit internal, maupun edukasi teknis.
+                    </p>
+
+                    <p class="py-5">
+                        Dalam praktiknya, digital forensic tidak hanya menitikberatkan pada apa yang terjadi, tetapi juga bagaimana, 
+                        kapan, dan oleh siapa suatu aktivitas dilakukan pada sistem. Seluruh proses investigasi harus mengikuti prinsip 
+                        forensik seperti integritas data, chain of custody, repeatability, dan forensic soundness, sehingga hasil analisis 
+                        tetap valid meskipun diuji ulang oleh pihak lain.
+                    </p>
+
+                    <p>
+                        Pada modul ini, Anda akan berperan sebagai Digital Forensic Analyst, yang bertugas melakukan investigasi 
+                        awal terhadap sebuah sistem yang diduga mengalami aktivitas mencurigakan.
+                    </p>
+
+                    <h2 class="pt-5">Branch of Digital Forensic</h2>
+                    <p>
+                        Digital Forensic memiliki beberapa cabang utama yang masing-masing berfokus pada jenis media, sistem, atau 
+                        sumber data tertentu. Dalam konteks pembelajaran dan praktik dasar, berikut adalah branch yang paling relevan:
+                    </p>
+                    <ul class="list-decimal list-inside py-5">
+                        <li>File System Forensic</li>
+                        <p>Mempelajari struktur sistem berkas untuk menemukan:</p>
+                        <ul class="list-disc list-inside pl-2">
+                            <li>File tersembunyi atau terhapus</li>
+                            <li>Metadata file (waktu akses, modifikasi, pembuatan)</li>
+                            <li>Perubahan permission dan struktur direktori</li>
+                        </ul>
+
+                        <li class="pt-5">Disk & Storage Forensic</li>
+                        <p>Berfokus pada media penyimpanan dan image disk untuk:</p>
+                        <ul class="list-disc list-inside pl-2">
+                            <li>Analisis partisi dan sektor</li>
+                            <li>Identifikasi data residual</li>
+                            <li>Preservasi dan validasi bukti digital</li>
+                        </ul>
+
+                        <li class="pt-5">Network Forensic</li>
+                        <p>Menganalisis aktivitas lalu lintas jaringan untuk:</p>
+                        <ul class="list-disc list-inside pl-2">
+                            <li>Identifikasi dan merekonstruksi komunikasi mencurigakan</li>
+                            <li>Analisis traffic dan log koneksi</li>
+                            <li>Penelusuran sumber insiden lalu lintas jaringan</li>
+                        </ul>
+
+                        <li class="pt-5">Log Forensic</li>
+                        <p>Mempelajari file log sistem dan aplikasi untuk:</p>
+                        <ul class="list-disc list-inside pl-2">
+                            <li>Melacak aktivitas autentikasi</li>
+                            <li>Menyusun urutan kejadian</li>
+                            <li>Merekonstruksi aktivitas pengguna</li>
+                        </ul>
+                    </ul>
+
+                    <h2>Basic Investigation Techniques</h2>
+                    <p class="pb-5">Pada web ini, teknik yang digunakan difokuskan pada investigasi awal (initial forensic analysis).</p>
+                    <ul class="list-decimal list-inside">
+                        <li>Evidence Identification</li>
+                        <ul class="list-disc list-inside pl-2">
+                            <li>Mengidentifikasi sumber bukti digital yang relevan</li>
+                            <li>Menentukan ruang lingkup investigasi</li>
+                            <li>Meminimalkan perubahan pada sistem</li>
+                        </ul>
+
+                        <li class="pt-5">File & Metadata Analysis</li>
+                        <ul class="list-disc list-inside pl-2">
+                            <li>Analisis timestamp (MAC Time)</li>
+                            <li>Pemeriksaan ukuran dan atribut file</li>
+                            <li>Identifikasi anomali pada file</li>
+                        </ul>
+
+                        <li class="pt-5">Hash Verification</li>
+                        <ul class="list-disc list-inside pl-2">
+                            <li>Perhitungan hash (MD5 / SHA-256)</li>
+                            <li>Validasi integritas data</li>
+                            <li>Pembuktian keaslian bukti digital</li>
+                        </ul>
+                    </ul>
+
+                    <h2 class="pt-2">Learning Outcomes</h2>
+                    <ul class="list-disc list-inside pl-2 pb-5">
+                        <li>Memahami konsep dan ruang lingkup digital forensic</li>
+                        <li>Mengenali beberapa cabang digital forensic</li>
+                        <li>Mengidentifikasi artefak digital yang relevan</li>
+                        <li>Melakukan investigasi dasar secara sistematis</li>
+                        <li>Mendokumnentasikan hasil analisis secara terstruktur</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+    
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+</body>
+</html>

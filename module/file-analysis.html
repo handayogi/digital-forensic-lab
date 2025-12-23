@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VirtualSec Lab, a virtual lab for cybersecurity training">
+    <title>File Analysis | DFLab</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/overlay.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+
+    <!-- TailwindCSS & daisyUi -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <div class="intro-container min-h-screen">
+        <div class="hero-content w-1/3 mx-auto font-['Inter']">
+            <div class="flex flex-col gap-16 pt-12">
+                <div class="flex flex-row gap-8">
+                    <figure>
+                        <img
+                            class="size-24"
+                            src="{{ url_for('static', filename='img/learn.png') }}"
+                            alt="Intro image" />
+                    </figure>
+                    <h1 class="font-['Archivo'] intro-ttl content-center">File Analysis
+                        <p>Apa itu File Analysis?</p>
+                    </h1>
+                </div>
+
+                <div class="intro-content">
+                    <h2>Introduction</h2>
+                    <p>
+                        File analysis atau analisis file merupakan tahap awal yang krusial dalam Digital Forensic. 
+                        Analisis file merupakan proses pemeriksaan file digital untuk mengidentifikasi struktur, 
+                        konten, dan artefak yang relevan dalam investigasi forensik digital. Analisis ini tidak hanya 
+                        berfokus pada isi file, tetapi juga pada karakteristik teknis seperti format, signature, dan 
+                        atribut file.
+                    </p>
+
+                    <p class="py-5">
+                        Artefak dalam Digital Forensic adalah <q>sisa jejak, data, atau informasi digital</q> yang tertinggal
+                        dari aktivitas pengguna pada sistem atau perangkat digital, yang dapat digunakan untuk:
+                    </p>
+
+                    <ul class="list-disc list-inside pl-2">
+                        <li>Mengetahui apa yang sebenarnya terjadi</li>
+                        <li>Mengetahui kapan kejadian terjadi</li>
+                        <li>Mengetahui bagaimana suatu aktivitas dilakukan</li>
+                    </ul>
+
+                    <p class="py-5">
+                        Melalui file analysis, investigator dapat menganalisis karakteristik teknis seperti format, signature,
+                        dan atribut file untuk memastikan keaslian dan integritas data digital.
+                    </p>
+
+                    <h2>Lesson Overview</h2>
+                    <ul class="list-disc list-inside pl-2 pb-5">
+                        <li>File memiliki struktur internal (header, body, footer)</li>
+                        <li>Ekstensi file tidak selalu mencerminkan format sebenarnya</li>
+                        <li>File dapat dimodifikasi atau dimanipulasi</li>
+                        <li>File analysis menjadi dasar analisis forensik lanjutan</li>
+                    </ul>
+
+                    <h2>Learning Outcomes</h2>
+                    <ul class="list-disc list-inside pl-2 pb-5">
+                        <li>Memahami konsep dasar analisis file digital</li>
+                        <li>Mengidentifikasi struktur dan karakteristik file</li>
+                        <li>Menentukan peran file sebagai artefak forensik</li>
+                    </ul>
+
+                    <h2>Practice Scenario</h2>
+
+                    <details class="my-4" open>
+                        <summary>Langkah 1 - Pemilihan Bukti</summary>
+                        <p class="px-4 pt-2">
+                            Periksa bukti digital dalam directory <code>evidence</code>.
+                            Pastikan jumlah, nama, dan size file yang tidak biasa.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">cd</span> evidence/file_analysis</code><br>
+                            <code><span id="cmmd">ls</span> -lah</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>ls -lah</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li><code>l</code>, menampilkan detail file (permission, owner, size, timestamp).</li>
+                                <li><code>a</code>, menampilkan semua file, termasuk file yang tersembunyi.</li>
+                                <li><code>h</code>, menampilkan file dalam format human-readable.</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 2 - Verifikasi Tipe Asli File</summary>
+                        <p class="px-4 pt-2">
+                            Identifikasi apakah ekstensi file sama dengan tipe asli nya.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">file</span> *</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>file *</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Mengidentifikasi tipe file sebenarnya berdasarkan signature (magic bytes), bukan ekstensi.</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 3 - Analisis Metadata & Timestamp</summary>
+                        <p class="px-4 pt-2">
+                            Analisis metadata file untuk mengindentifikasi keanehan pada timeline.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">stat</span> {nama_file}</code><br>
+                            <code><span id="cmmd">exiftool</span> {nama_file}</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>exiftool {nama_file}</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>
+                                    Mengidentifikasi metadata digital seperti waktu, lokasi, perangkat, dan 
+                                    aktivitas terkait suatu objek digital (khusus untuk file media & dokumen).
+                                </li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 4 - File Header Inspection</summary>
+                        <p class="px-4 pt-2">
+                            Konfirmasi keaslian dari file bukti digital dengan melakukan inspeksi pada header.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">xxd</span> {nama_file} | head -n 20</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>xxd {nama_file} | head -n 20</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>xxd -> hexdump, menampilkan representasi heksadesimal dari file digital.</li>
+                                <li>head -n 20, menampilkan 20 baris pertama dari file digital.</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 5 - Temukan Data Tersembunyi</summary>
+                        <p class="px-4 pt-2">
+                            Identifikasi atau deteksi file tersembunyi yang terkandung dalam file.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">binwalk</span> {nama_file}</code><br>
+                            <code><span id="cmmd">binwalk</span> -e {nama_file}</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>binwalk {nama_file}</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Mendeteksi file atau data tersembunyi di dalam file lain.</li>
+                                <li>-e, mengestrak otomatis file tersembunyi yang terdeteksi.</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                </div>
+
+                <div class="grid grid-cols-3 gap-x-6 card-btn place-items-center">
+                    <a href="/module">
+                        <div class="card card-border card-md w-44">
+                            <div class="card-body items-center">
+                                <div class="card-title">Back</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="card card-border card-md w-44">
+                        <a href="/practice">
+                            <div class="card-body items-center">
+                                <div class="card-title">Practice</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="card card-border card-md w-44">
+                        <a href="/module/network-forensic">
+                            <div class="card-body items-center">
+                                <div class="card-title">Continue</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+    
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VirtualSec Lab, a virtual lab for cybersecurity training">
+    <title>Digital Footprint Investigation | DFLab</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/overlay.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+
+    <!-- TailwindCSS & daisyUi -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/e08144cc9c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <div class="intro-container min-h-screen">
+        <div class="hero-content w-1/3 mx-auto font-['Inter']">
+            <div class="flex flex-col gap-16 pt-12">
+                <div class="flex flex-row gap-8">
+                    <figure>
+                        <img
+                            class="size-24"
+                            src="{{ url_for('static', filename='img/learn.png') }}"
+                            alt="Intro image" />
+                    </figure>
+                    <h1 class="font-['Archivo'] intro-ttl content-center">Digital Footprint Investigation
+                        <p>Apa itu Digital Footprint Investigation?</p>
+                    </h1>
+                </div>
+
+                <div class="intro-content">
+                    <h2 class="font-['Sora'] py-3">Introduction</h2>
+                    <p>
+                        Digital footprint investigation atau investigasi jejak digital merupakan proses analisis terhadap jejak digital yang ditinggalkan oleh
+                        oleh pengguna atau sistem selama berinteraksi dengan teknologi digital. Jejak ini dapat muncul secara sadar 
+                        maupun tidak sadar dan tersebar di berbagai sumber digital.
+                    </p>
+
+                    <p class="py-3">
+                        Dalam Digital Forensic, jejak digital digunakan untuk merekonstruksi aktivitas pengguna, mengidentifikasi 
+                        pola perilaku, serta menghubungkan berbagai artefak digital dalam suatu skenario investigasi. Analisis 
+                        digital foorprint dalam modul ini mencakup:
+                    </p>
+
+                    <ul class="list-disc list-inside pl-2">
+                        <li>Aktivitas pengguna pada sistem</li>
+                        <li>Riwayat aktivitas pada browser atau aplikasi</li>
+                        <li>Log sistem dan file cache</li>
+                        <li>Artefak aktivitas jaringan (sederhana)</li>
+                    </ul>
+
+                    <p class="py-3">
+                        Jejak digital dianalisis secara korelatif untuk membangun kronologi aktivitas.
+                    </p>
+
+                    <h2 class="font-['Sora']">Lesson Overview</h2>
+                    <ul class="list-disc list-inside pl-2 py-3">
+                        <li>Jejak digital berasal dari berbagai sumber (browser atau aplikasi)</li>
+                        <li>Digital footprint investigation merupakan proses analisis terhadap jejak digital yang ditinggalkan.</li>
+                        <li>Jejak digital dapat muncul secara sadar maupun tidak sadar</li>
+                        <li>Analisis jejak digital mendukung rekonstruksi aktivitas</li>
+                    </ul>
+
+                    <h2 class="font-['Sora']">Learning Outcomes</h2>
+                    <ul class="list-disc list-inside pl-2 pt-3 pb-5">
+                        <li>Memahami konsep dasar investigasi jejak digital</li>
+                        <li>Mengidentifikasi sumber jejak digital</li>
+                        <li>Menganalisis jejak aktivitas digital berdasarkan artefak yang tertinggal atau tersedia</li>
+                    </ul>
+
+                    <h2>Practice Scenario</h2>
+
+                    <details class="my-4" open>
+                        <summary>Langkah 1 - Log Overview</summary>
+                        <p class="px-4 pt-2">
+                            Memahami log file yang tersedia
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">cd</span> evidence/digital_footprint</code><br>
+                            <code><span id="cmmd">ls</span> -lah</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>ls -lah</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li><code>l</code>, menampilkan detail file (permission, owner, size, timestamp).</li>
+                                <li><code>a</code>, menampilkan semua file, termasuk file yang tersembunyi.</li>
+                                <li><code>h</code>, menampilkan file dalam format human-readable.</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 2 - Analisis Log Otentikasi</summary>
+                        <p class="px-4 pt-2">
+                            Melakukan inspeksi terhadap log otentikasi untuk mengidentifikasi aktivitas percobaan login yang mencurigakan.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">grep</span> "Failed password" auth.log</code><br>
+                            <code><span id="cmmd">grep</span> "Accepted password" auth.log</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>grep "Failed password" auth.log</code> dan <code>grep "Accepted password" auth.log</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Mencari kata kunci "Failed password" dan "Accepted password" dalam file log</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 3 - Deteksi Privilege Escalation</summary>
+                        <p class="px-4 pt-2">
+                            Identifikasi penggunaan command administrative.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">grep</span> "sudo" auth.log</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>grep "sudo" auth.log</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Mencari kata kunci "sudo" dalam file log untuk mendeteksi penggunaan hak administrative</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 4 - Analisis Histori Perintah User</summary>
+                        <p class="px-4 pt-2">
+                            Rekonstruksi perilaku user.
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">cat</span> bash_history.txt</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>cat bash_history.txt</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Menampilkan isi file riwayat perintah user</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                    <details class="my-4">
+                        <summary>Langkah 5 - Timeline Reconstruction</summary>
+                        <p class="px-4 pt-2">
+                            Hubungkan semua artefak yang ditemukan ke timeline
+                        </p>
+                        <div class="code">
+                            <code><span id="cmmd">less</span> auth.log</code>
+                        </div>
+                        <p class="px-4">
+                            Fungsi dari perintah atau command <code>less auth.log</code>:
+                            <ul class="list-disc list-inside px-4 pb-4">
+                                <li>Menampilkan log secara interaktif</li>
+                            </ul>
+                        </p>
+                    </details>
+
+                </div>
+
+                <div class="grid grid-cols-2 gap-x-6 card-btn place-items-center">
+                    <a href="/module/network-forensic">
+                        <div class="card card-border card-md w-44">
+                            <div class="card-body items-center">
+                                <div class="card-title">Back</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="card card-border card-md w-44">
+                        <a href="/practice">
+                            <div class="card-body items-center">
+                                <div class="card-title">Practice</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+    
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+</body>
+</html>

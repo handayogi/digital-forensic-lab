@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VirtualSec Lab, a virtual lab for cybersecurity training">
+    <title>All Module | DFLab</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/overlay.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+
+    <!-- TailwindCSS & daisyUi -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <div class="learn-container min-h-screen">
+        <div class="pt-24 pb-12 min-w-screen text-center">
+            <h1 class="learn-ttl">All Module</h1>
+        </div>
+
+        <div class="module flex flex-col w-2/4 mx-auto rounded-lg">
+            <div class="card card-side card-lg font-['Inter']">
+                <figure class="pl-4">
+                    <img class="size-40" src="{{ url_for('static', filename='img/forensics.png') }}" alt="Digital Forensic Image" />
+                </figure>
+                <div class="card-body">
+                    <div class="card-title font-['Geom']">Digital Forensic</div>
+                    <p class="max-w-2xl pb-2">
+                        Pada modul inilah semua dimulai! Pengenalan salah satu cabang ilmu forensik yang berfokus pada investigasi bukti
+                        digital. Pemahaman ini akan membantu kamu memahami ruang lingkup dan prinsip dasar Digital Forensic.
+                    </p>
+                    <div class="card-actions justify-end">
+                        <a href="/module/digital-forensic">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider divider-warning mx-auto py-10">Modul Pembelajaran & Praktik:</div>
+
+        <div class="flex flex-row w-2/4 mx-auto gap-6 font-[Inter] mb-40">
+            <div class="card card-border card-lg text-white place-content-center">
+                <figure class="text-center pt-10">
+                    <img 
+                        class="size-40"
+                        src="{{ url_for('static', filename='img/file-analysis.png') }}" 
+                        alt="File Analysis Module Image" />
+                </figure>
+                <div class="card-body">
+                    <h2 class="font-['Archivo'] module-ttl">File Analysis</h2>
+                    <p class="module-para py-4">
+                        Modul ini membahas konsep dasar analisis file dalam Digital Forensic, termasuk struktur file, tipe file, 
+                        serta metode identifikasi dan ekstraksi informasi dari file digital.
+                    </p>
+                    <div class="card-actions justify-end">
+                        <a href="/module/file-analysis">Explore</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-border card-lg text-white place-content-center">
+                <figure class="text-center pt-10">
+                    <img 
+                        class="size-40"
+                        src="{{ url_for('static', filename='img/network.png') }}" 
+                        alt="Network Forensics Module Image" />
+                </figure>
+                <div class="card-body">
+                    <h2 class="font-['Archivo'] module-ttl">Network Forensics</h2>
+                    <p class="module-para py-4">
+                        Modul ini membahas konsep dasar investigasi jaringan dalam Digital Forensic, termasuk struktur jaringan, 
+                        protokol, serta metode identifikasi dan ekstraksi informasi dari jaringan digital.
+                    </p>
+                    <div class="card-actions justify-end">
+                        <a href="/module/network-forensic">Explore</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-border card-lg text-white place-content-center">
+                <figure class="text-center pt-10">
+                    <img 
+                        class="size-40"
+                        src="{{ url_for('static', filename='img/footprint.png') }}" 
+                        alt="Digital Footprint Module Image" />
+                </figure>
+                <div class="card-body">
+                    <h2 class="font-['Archivo'] module-ttl">Digital Footprint</h2>
+                    <p class="module-para py-4">
+                        Modul ini membahas konsep jejak digital serta metode investigasi terhadap 
+                        aktivitas pengguna di lingkungan digital sebagai bagian dari proses Digital Forensic.
+                    </p>
+                    <div class="card-actions justify-end">
+                        <a href="/module/digital-footprint-investigation">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+</body>
+</html>

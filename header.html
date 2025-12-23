@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VirtualSec Lab, a virtual lab for cybersecurity training">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+
+    <!-- TailwindCSS & daisyUi -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar font-['Pacifico']">
+        <div class="flex-1">
+            <a href="#" class="nav-title text-4xl font-extrabold px-12 italic" data-page="homepage">DFLab</a>
+        </div>
+        <div class="flex-none font-['Inter']">
+            <ul class="menu-horizontal px-16 gap-12 font-bold">
+                <li><a href="/about" class="menu-btn text-sm" data-page="about">About</a></li>
+                <li><a href="/module" class="menu-btn text-sm" data-page="module">Module</a></li>
+                <li><a href="/practice" class="menu-btn text-sm" data-page="practice">Practice</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>
